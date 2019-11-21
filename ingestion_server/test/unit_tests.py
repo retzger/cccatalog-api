@@ -4,14 +4,14 @@ from uuid import uuid4
 from ingestion_server.elasticsearch_models import Image
 
 
-def create_mock_image(override=None):
+def mock_image(override=None):
     """
     Produce a mock image. Override default fields by passing in a dict with the
     desired keys and values.
 
     For example, to make an image with a custom title and default everything
     else:
-    >>> create_mock_image({'title': 'My title'})
+    >>> mock_image({'title': 'My title'})
     :return:
     """
     test_popularity = {
@@ -41,6 +41,8 @@ def create_mock_image(override=None):
     }
     for k, v in override.items():
         test_data[k] = v
+
+    # Format the data in a way that elasticsearch_models.Image understands.
     schema = {}
     row = []
     idx = 0
@@ -52,27 +54,27 @@ def create_mock_image(override=None):
 
 
 def test_size():
-    small = create_mock_image({'height': 600, 'width': 300})
+    small = mock_image({'height': 600, 'width': 300})
     assert small.size == Image.ImageSizes.SMALL.name.lower()
-    huge = create_mock_image({'height': 4096, 'width': 4096})
+    huge = mock_image({'height': 4096, 'width': 4096})
     assert huge.size == Image.ImageSizes.LARGE.name.lower()
 
 
 def test_aspect_ratio():
-    square = create_mock_image({'height': 300, 'width': 300})
+    square = mock_image({'height': 300, 'width': 300})
     assert square.aspect_ratio == Image.AspectRatios.SQUARE.name.lower()
-    tall = create_mock_image({'height': 500, 'width': 200})
+    tall = mock_image({'height': 500, 'width': 200})
     assert tall.aspect_ratio == Image.AspectRatios.TALL.name.lower()
-    wide = create_mock_image({'height': 200, 'width': 500})
+    wide = mock_image({'height': 200, 'width': 500})
     assert wide.aspect_ratio == Image.AspectRatios.WIDE.name.lower()
 
 
 def test_extension():
-    no_extension = create_mock_image({
+    no_extension = mock_image({
         'url': 'https://creativecommons.org/hello'
     })
     assert no_extension.extension is None
-    jpg = create_mock_image({
+    jpg = mock_image({
         'url': 'https://creativecommons.org/hello.jpg'
     })
     assert jpg.extension == 'jpg'
