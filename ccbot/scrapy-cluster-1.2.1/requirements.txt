@@ -2,7 +2,7 @@
 
 ConcurrentLogHandler==0.9.1
 Flask==0.12 # Updated from 0.11
-Jinja2==2.9.5 # Updated from 2.8
+Jinja2==2.11.3 # Updated from 2.8
 MarkupSafe==1.0 # Updated from 0.23
 PyDispatcher==2.0.5
 PyYAML==3.12
