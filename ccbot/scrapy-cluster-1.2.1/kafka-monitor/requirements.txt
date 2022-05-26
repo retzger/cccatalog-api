@@ -19,5 +19,5 @@ scutils==1.2.0
 six==1.10.0
 testfixtures==4.13.5 # Updated from 4.10.0
 tldextract==2.0.2 # Updated from 2.0.1
-ujson==1.35
+ujson==5.2.0
 # Generated with piprot 0.9.7
