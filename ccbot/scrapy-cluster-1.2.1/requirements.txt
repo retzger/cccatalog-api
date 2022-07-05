@@ -46,7 +46,7 @@ service-identity==16.0.0
 six==1.10.0
 testfixtures==4.13.5 # Updated from 4.11.0
 tldextract==2.0.2 # Updated from 2.0.1
-ujson==1.35
+ujson==5.4.0
 w3lib==1.17.0 # Updated from 1.16.0
 zope.interface==4.3.3 # Updated from 4.2.0
 # Generated with piprot 0.9.7
